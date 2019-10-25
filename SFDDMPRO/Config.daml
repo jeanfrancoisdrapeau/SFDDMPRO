@@ -1,0 +1,44 @@
+﻿<ArcGIS defaultAssembly="SFDDMPRO.dll" defaultNamespace="SFDDMPRO" xmlns="http://schemas.esri.com/DADF/Registry" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://schemas.esri.com/DADF/Registry file:///C:/Users/Jeff/AppData/Local/Programs/ArcGIS/Pro/bin/ArcGIS.Desktop.Framework.xsd">
+  <AddInInfo id="{761170ad-c2f1-4fdc-beae-bf26cbe36a5c}" version="1.0" desktopVersion="2.4.19948">
+    <Name>SFDDMPRO</Name>
+    <Description>Outil de saisie de polygones forestiers pour ArcGis Pro</Description>
+    <Image>Images\AddinDesktop32.png</Image>
+    <Author>Jean-Francois Drapeau</Author>
+    <Company>Groupe DDM</Company>
+    <Date>10/23/2019 2:18:08 PM, 2019</Date>
+    <Subject>Framework, Editing, Geometry</Subject>
+    <!-- Note subject can be one or more of these topics:
+                    Content, Framework, Editing, Geodatabase, Geometry, Geoprocessing, Layouts, Map Authoring, Map Exploration -->
+  </AddInInfo>
+  <modules>
+    <insertModule id="SFDDMPRO_Module" className="Module1" autoLoad="false" caption="Module1">
+      <!-- uncomment to have the control hosted on a separate tab-->
+      <tabs>
+        <tab id="SFDDMPRO_Tab1" caption="Groupe DDM" keytip="">
+          <group refID="SFDDMPRO_Group1" />
+        </tab>
+      </tabs>
+      <groups>
+        <!-- comment this out if you have no controls on the Addin tab to avoid
+              an empty group-->
+        <!--<group id="SFDDMPRO_Group1" caption="Group 1" appearsOnAddInTab="true" keytip="">
+          
+        </group>-->
+        <group id="SFDDMPRO_Group1" caption="" appearsOnAddInTab="false">
+          <button refID="SFDDMPRO_Saisie_ShowButton" size="large" />
+        </group>
+      </groups>
+      <controls>
+        <!-- add your controls here -->
+        <button id="SFDDMPRO_Saisie_ShowButton" caption="Show Saisie" className="Saisie_ShowButton" loadOnClick="true" smallImage="pack://application:,,,/ArcGIS.Desktop.Resources;component/Images/GenericButtonPurple16.png" largeImage="pack://application:,,,/ArcGIS.Desktop.Resources;component/Images/GenericButtonPurple32.png">
+          <tooltip heading="Show Dockpane">Show Dockpane<disabledText /></tooltip>
+        </button>
+      </controls>
+      <dockPanes>
+        <dockPane id="SFDDMPRO_Saisie" caption="Saisie" className="SaisieViewModel" dock="left" dockWith="esri_core_contentsDockPane">
+          <content className="SaisieView" />
+        </dockPane>
+      </dockPanes>
+    </insertModule>
+  </modules>
+</ArcGIS>

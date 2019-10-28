@@ -30,9 +30,17 @@
                 </TextBlock.ToolTip>
       </TextBlock>
         </DockPanel>
-        <TextBox x:Name="textBox" Height="20" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="10,47,10,0" Text="{Binding TxtText1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox x:Name="tbType1" Height="20" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,100,106,0" Text="{Binding TxtText1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Width="91"/>
         <Button x:Name="button" Content="Save" Margin="10,0,10,10" Grid.Row="1" RenderTransformOrigin="-1.255,5.047" Command="{Binding SaveTableEdits}" Height="22" VerticalAlignment="Bottom"/>
         <ComboBox x:Name="comboBox" Margin="10,10,85,0" Grid.Row="1" VerticalAlignment="Top" Height="20" ItemsSource="{Binding AllFeatureLayers}" SelectedItem="{Binding SelectedFeatureLayer}"/>
-        <Button x:Name="button_Copy" Content="Refresh" Margin="0,10,10,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-1.255,5.047" HorizontalAlignment="Right" Width="70" Command="{Binding RefreshLayers}" Height="22"/>
+        <Button x:Name="button_Copy" Content="Refresh" Margin="0,10,10,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-1.255,5.047" Command="{Binding RefreshLayers}" Height="22" HorizontalAlignment="Right" Width="70"/>
+        <TextBox x:Name="tbType2" Height="20" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,100,10,0" Text="{Binding TxtText1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Width="91"/>
+        <Label x:Name="label" Content="Type" HorizontalAlignment="Left" Margin="10,100,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbIdUnique" Height="20" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,37,106,0" Text="{Binding TxtText1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Width="91" IsEnabled="False"/>
+        <Label x:Name="label_Copy" Content="Id. unique" HorizontalAlignment="Left" Margin="10,37,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbNoPeup" Height="20" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,58,106,0" Text="{Binding TxtText1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Width="91" IsEnabled="False"/>
+        <Label x:Name="label_Copy1" Content="No. peup." HorizontalAlignment="Left" Margin="10,58,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbPeeNoAcq" Height="20" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,79,106,0" Text="{Binding TxtText1, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Right" Width="91" IsEnabled="False"/>
+        <Label x:Name="label_Copy2" Content="Pee no acq" HorizontalAlignment="Left" Margin="10,79,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>

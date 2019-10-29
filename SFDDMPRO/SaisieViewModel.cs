@@ -34,15 +34,11 @@ namespace SFDDMPRO
         private ObservableCollection<string> _allFeatureLayers;
         public string SelectedFeatureLayer { get; set; }
 
-        private string _txtText1;
-        public string TxtText1
+        private DataNaipf2019 _dataNaipf2019 = new DataNaipf2019();
+        public DataNaipf2019 CurrentDataNaipf
         {
-            get { return _txtText1; }
-            set
-            {
-                _txtText1 = value;
-                NotifyPropertyChanged("TxtText1");
-            }
+            get { return _dataNaipf2019; }
+            set { }
         }
 
         public ICommand RefreshLayers => _refreshLayers;
@@ -112,7 +108,7 @@ namespace SFDDMPRO
 
                     if (inspector.HasAttributes)
                     {
-                        if (inspector.Count(a => a.FieldName.ToUpper() == "SAMPLINGST") > 0) inspector["SamplingSt"] = TxtText1;
+                        if (inspector.Count(a => a.FieldName.ToUpper() == "SAMPLINGST") > 0) inspector["SamplingSt"] = _dataNaipf2019.TxtTbType1;
 
                         var editOp = new EditOperation();
                         editOp.Name = "Edit " + featLayer.Name + ", " + Convert.ToString(featSelectionOIDs.Count) + " records.";
@@ -169,7 +165,7 @@ namespace SFDDMPRO
                 {
                     rowCursor.MoveNext();
                     var anyRow = rowCursor.Current;
-                    TxtText1 = anyRow["SamplingSt"].ToString();
+                    _dataNaipf2019.TxtTbType1 = anyRow["SamplingSt"].ToString();
                 }
             });
         }

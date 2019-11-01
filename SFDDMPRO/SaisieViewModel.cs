@@ -44,6 +44,12 @@ namespace SFDDMPRO
         public ICommand RefreshLayers => _refreshLayers;
         private RelayCommand _refreshLayers;
 
+        public ICommand GroupEss => _groupEss;
+        private RelayCommand _groupEss;
+
+        public ICommand NotePrest => _notePrest;
+        private RelayCommand _notePrest;
+
         public ICommand SaveTableEdits => _saveTableEdits;
         private RelayCommand _saveTableEdits;
 
@@ -51,6 +57,8 @@ namespace SFDDMPRO
         {
             _refreshLayers = new RelayCommand(() => refreshLayers(), () => true);
             _saveTableEdits = new RelayCommand(() => saveTableEdits(), () => true);
+            _groupEss = new RelayCommand(() => groupEss(), () => true);
+            _notePrest = new RelayCommand(() => notePrest(), () => true);
         }
 
         /// <summary>
@@ -77,6 +85,16 @@ namespace SFDDMPRO
                 MapSelectionChangedEvent.Unsubscribe(_eventToken);
                 _eventToken = null;
             }
+        }
+
+        private void groupEss()
+        {
+
+        }
+
+        private void notePrest()
+        {
+
         }
 
         private void saveTableEdits()
@@ -108,7 +126,7 @@ namespace SFDDMPRO
 
                     if (inspector.HasAttributes)
                     {
-                        if (inspector.Count(a => a.FieldName.ToUpper() == "SAMPLINGST") > 0) inspector["SamplingSt"] = _dataNaipf2019.TxtTbType1;
+                        if (inspector.Count(a => a.FieldName.ToUpper() == "type_couv1") > 0) inspector["type_couv1"] = _dataNaipf2019.TxtTbType1;
 
                         var editOp = new EditOperation();
                         editOp.Name = "Edit " + featLayer.Name + ", " + Convert.ToString(featSelectionOIDs.Count) + " records.";
@@ -165,7 +183,26 @@ namespace SFDDMPRO
                 {
                     rowCursor.MoveNext();
                     var anyRow = rowCursor.Current;
-                    _dataNaipf2019.TxtTbType1 = anyRow["SamplingSt"].ToString();
+                    _dataNaipf2019.TxtTbType1 = anyRow["type_couv1"].ToString();
+                    _dataNaipf2019.TxtTbType2 = anyRow["type_couv2"].ToString();
+                    _dataNaipf2019.TxtTbPart = anyRow["part_str"].ToString();
+                    _dataNaipf2019.TxtTbDens1 = anyRow["et1_dens"].ToString();
+                    _dataNaipf2019.TxtTbDens2 = anyRow["et2_dens"].ToString();
+                    _dataNaipf2019.TxtTbHaut1 = anyRow["et1_haut"].ToString();
+                    _dataNaipf2019.TxtTbHaut2 = anyRow["et2_haut"].ToString();
+                    _dataNaipf2019.TxtTbCouvGaule = anyRow["couv_gaule"].ToString();
+                    _dataNaipf2019.TxtTbEtDomi = anyRow["et_domi"].ToString();
+                    _dataNaipf2019.TxtTbOrigine = anyRow["origine"].ToString();
+                    _dataNaipf2019.TxtTbAnnOrg = anyRow["an_origine"].ToString();
+                    _dataNaipf2019.TxtTbRebEss1 = anyRow["reb_ess1"].ToString();
+                    _dataNaipf2019.TxtTbRebEss2 = anyRow["reb_ess2"].ToString();
+                    _dataNaipf2019.TxtTbRebEss3 = anyRow["reb_ess3"].ToString();
+                    _dataNaipf2019.TxtTbEtage = anyRow["etagement"].ToString();
+                    _dataNaipf2019.TxtTbAge1 = anyRow["et1_age"].ToString();
+                    _dataNaipf2019.TxtTbAge2 = anyRow["et2_age"].ToString();
+                    _dataNaipf2019.TxtTbPertMoy = anyRow["perturb"].ToString();
+                    _dataNaipf2019.TxtTbAnnPertMoy = anyRow["an_perturb"].ToString();
+                    _dataNaipf2019.TxtTbCdeTerr = anyRow["co_ter"].ToString();
                 }
             });
         }
@@ -173,7 +210,7 @@ namespace SFDDMPRO
         /// <summary>
         /// Text shown near the top of the DockPane.
         /// </summary>
-        private string _heading = "SFDDMPRO v1.00.1";
+        private string _heading = "SFDDMPRO v1.00.0";
         public string Heading
         {
             get { return _heading; }
@@ -197,7 +234,39 @@ namespace SFDDMPRO
 
                 foreach (var f in MapView.Active.Map.GetLayersAsFlattenedList().OfType<FeatureLayer>())
                 {
-                    _allFeatureLayers.Add(f.Name);
+                    var okAdd = true;
+                    var inspector = new ArcGIS.Desktop.Editing.Attributes.Inspector(true);
+
+                    var featSelectionOIDs = f.GetSelection().GetObjectIDs();
+
+                    inspector.Load(f, featSelectionOIDs);
+
+                    if (inspector.HasAttributes)
+                    {
+                        if (inspector.Count(a => a.FieldName.ToLower() == "type_couv1") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "type_couv2") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "part_str") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "et1_dens") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "et2_dens") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "et1_haut") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "et2_haut") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "couv_gaule") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "et_domi") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "origine") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "an_origine") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "reb_ess1") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "reb_ess2") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "reb_ess3") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "etagement") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "et1_age") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "et2_age") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "perturb") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "an_perturb") == 0) okAdd = false;
+                        if (inspector.Count(a => a.FieldName.ToLower() == "co_ter") == 0) okAdd = false;
+
+                        if (okAdd)
+                            _allFeatureLayers.Add(f.Name);
+                    }
                 }
 
                 this.AllFeatureLayers = new ReadOnlyObservableCollection<string>(_allFeatureLayers);

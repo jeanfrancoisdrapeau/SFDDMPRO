@@ -6,7 +6,7 @@
              xmlns:ui="clr-namespace:SFDDMPRO"
              xmlns:extensions="clr-namespace:ArcGIS.Desktop.Extensions;assembly=ArcGIS.Desktop.Extensions"
              mc:Ignorable="d" 
-             d:DesignHeight="519" d:DesignWidth="207.103"
+             d:DesignHeight="519" d:DesignWidth="210.103"
              d:DataContext="{Binding Path=ui.SaisieViewModel}">
     <UserControl.Resources>
         <ResourceDictionary>
@@ -18,7 +18,8 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="469*"/>
         </Grid.RowDefinitions>
 
         <DockPanel Grid.Row="0" LastChildFill="true" KeyboardNavigation.TabNavigation="Local" Height="30">
@@ -30,13 +31,49 @@
                 </TextBlock.ToolTip>
       </TextBlock>
         </DockPanel>
-        <Button x:Name="button" Content="Save" Margin="10,0,9,10" Grid.Row="1" RenderTransformOrigin="-1.255,5.047" Command="{Binding SaveTableEdits}" Height="22" VerticalAlignment="Bottom"/>
-        <ComboBox x:Name="comboBox" Margin="10,10,68,0" Grid.Row="1" VerticalAlignment="Top" Height="20" ItemsSource="{Binding AllFeatureLayers}" SelectedItem="{Binding SelectedFeatureLayer}"/>
-        <Button x:Name="button_Copy" Content="Refresh" Margin="0,10,9,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-1.255,5.047" Command="{Binding RefreshLayers}" Height="22" HorizontalAlignment="Right" Width="54"/>
-        <Label x:Name="label" Content="Type" HorizontalAlignment="Left" Margin="10,58,0,0" Grid.Row="1" VerticalAlignment="Top" FontWeight="Bold"/>
-        <TextBox x:Name="tbIdUnique" Height="20" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,37,9,0" Text="{Binding CurrentDataNaipf.TxtTbIdUnique, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" HorizontalAlignment="Right" Width="112"/>
-        <Label x:Name="label_Copy" Content="Id. unique" HorizontalAlignment="Left" Margin="10,37,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <ComboBox x:Name="comboType1" HorizontalAlignment="Left" Margin="86,58,0,0" Grid.Row="1" VerticalAlignment="Top" Width="54" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbType1}" ItemsSource="{Binding CurrentDataNaipf.RefType.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value"/>
-        <ComboBox x:Name="comboType2" HorizontalAlignment="Left" Margin="144,58,0,0" Grid.Row="1" VerticalAlignment="Top" Width="54" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbType2}" ItemsSource="{Binding CurrentDataNaipf.RefType.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value"/>
+        <Button x:Name="button" Content="Confirmer et enregistrer" Margin="10,0,9,10" Grid.Row="2" RenderTransformOrigin="-1.255,5.047" Command="{Binding SaveTableEdits}" Height="22" VerticalAlignment="Bottom"/>
+        <ComboBox x:Name="comboBox" Margin="0,10,68,0" Grid.Row="1" VerticalAlignment="Top" Height="20" ItemsSource="{Binding AllFeatureLayers}" SelectedItem="{Binding SelectedFeatureLayer}" Grid.RowSpan="2" HorizontalAlignment="Right" Width="129"/>
+        <Button x:Name="button_Copy" Content="Refresh" Margin="0,10,9,0" Grid.Row="1" VerticalAlignment="Top" RenderTransformOrigin="-1.255,5.047" Command="{Binding RefreshLayers}" Height="22" HorizontalAlignment="Right" Width="54" Grid.RowSpan="2"/>
+        <Label x:Name="label" Content="Type" HorizontalAlignment="Left" Margin="10,38,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbIdUnique" Height="20" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,17,9,0" Text="{Binding CurrentDataNaipf.TxtTbIdUnique, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" HorizontalAlignment="Right" Width="112"/>
+        <Label x:Name="label_Copy" Content="Id. unique" HorizontalAlignment="Left" Margin="10,17,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <ComboBox x:Name="comboType1" Margin="0,38,67,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbType1}" ItemsSource="{Binding CurrentDataNaipf.RefType.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <ComboBox x:Name="comboType2" Margin="0,38,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbType2}" ItemsSource="{Binding CurrentDataNaipf.RefType.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <ComboBox x:Name="comboParticularite" Margin="0,84,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbPart}" ItemsSource="{Binding CurrentDataNaipf.RefPart.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="112"/>
+        <Button x:Name="btnGrpEss" Content="Modifier" Margin="0,61,9,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-1.255,5.047" Command="{Binding GroupEss}" Height="22" HorizontalAlignment="Right" Width="112"/>
+        <Label x:Name="label_Copy1" Content="Group. ess." HorizontalAlignment="Left" Margin="10,64,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold" RenderTransformOrigin="0.481,2.75"/>
+        <Label x:Name="label_Copy2" Content="Particularité" HorizontalAlignment="Left" Margin="10,86,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <ComboBox x:Name="comboDens1" Margin="0,107,67,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbDens1}" ItemsSource="{Binding CurrentDataNaipf.RefDens.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <ComboBox x:Name="comboDens2" Margin="0,107,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbDens2}" ItemsSource="{Binding CurrentDataNaipf.RefDens.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <ComboBox x:Name="comboHaut1" Margin="0,130,67,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbHaut1}" ItemsSource="{Binding CurrentDataNaipf.RefHaut.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <ComboBox x:Name="comboHaut2" Margin="0,130,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbHaut2}" ItemsSource="{Binding CurrentDataNaipf.RefHaut.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <Label x:Name="label_Copy3" Content="Densité" HorizontalAlignment="Left" Margin="10,110,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy4" Content="Hauteur" HorizontalAlignment="Left" Margin="10,133,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <ComboBox x:Name="comboCouvGaule" Margin="0,153,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbCouvGaule}" ItemsSource="{Binding CurrentDataNaipf.RefCouvGaule.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="112"/>
+        <ComboBox x:Name="comboEtDomi" Margin="0,176,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbEtDomi}" ItemsSource="{Binding CurrentDataNaipf.RefEtDomi.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="112"/>
+        <ComboBox x:Name="comboOrigine" Margin="0,199,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbOrigine}" ItemsSource="{Binding CurrentDataNaipf.RefOrigine.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="112"/>
+        <Label x:Name="label_Copy5" Content="Couv. gaule" HorizontalAlignment="Left" Margin="10,157,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy6" Content="Et. domi." HorizontalAlignment="Left" Margin="10,180,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy7" Content="Origine" HorizontalAlignment="Left" Margin="10,203,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <TextBox x:Name="tbAnneeOrg" Height="20" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,222,9,0" Text="{Binding CurrentDataNaipf.TxtTbAnnOrg}" HorizontalAlignment="Right" Width="112"/>
+        <ComboBox x:Name="comboRebEss1" Margin="0,243,67,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbRebEss1}" ItemsSource="{Binding CurrentDataNaipf.RefRebEss.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <ComboBox x:Name="comboRebEss2" Margin="0,243,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbRebEss2}" ItemsSource="{Binding CurrentDataNaipf.RefRebEss.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <ComboBox x:Name="comboRebEss3" Margin="0,266,67,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbRebEss3}" ItemsSource="{Binding CurrentDataNaipf.RefRebEss.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <ComboBox x:Name="comboEtage" Margin="0,289,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbEtage}" ItemsSource="{Binding CurrentDataNaipf.RefEtage.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="112"/>
+        <ComboBox x:Name="comboAge1" Margin="0,312,67,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbAge1}" ItemsSource="{Binding CurrentDataNaipf.RefAge.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <ComboBox x:Name="comboAge2" Margin="0,312,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbAge2}" ItemsSource="{Binding CurrentDataNaipf.RefAge.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="54"/>
+        <TextBox x:Name="tbAnPertMoy" Height="20" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Margin="0,358,9,0" Text="{Binding CurrentDataNaipf.TxtTbAnnPertMoy}" HorizontalAlignment="Right" Width="112"/>
+        <ComboBox x:Name="comboPertMoy" Margin="0,335,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbPertMoy}" ItemsSource="{Binding CurrentDataNaipf.RefPertMoy.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="112"/>
+        <ComboBox x:Name="comboCdeTerr" Margin="0,379,9,0" Grid.Row="2" VerticalAlignment="Top" Height="20" SelectedValue="{Binding CurrentDataNaipf.TxtTbCdeTerr}" ItemsSource="{Binding CurrentDataNaipf.RefCdeTer.refs}" IsEditable="True" DisplayMemberPath="Text" SelectedValuePath="Value" HorizontalAlignment="Right" Width="112"/>
+        <Button x:Name="btnGrpEss_Copy" Content="Modifier" Margin="0,402,9,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="-1.255,5.047" Command="{Binding NotePrest}" Height="22" HorizontalAlignment="Right" Width="112"/>
+        <Label x:Name="label_Copy8" Content="Année Org." HorizontalAlignment="Left" Margin="10,224,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy9" Content="Reb. ess. 1/2" HorizontalAlignment="Left" Margin="10,247,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy10" Content="Reb. ess. 3" HorizontalAlignment="Left" Margin="10,270,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy11" Content="Étagement" HorizontalAlignment="Left" Margin="10,293,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy12" Content="Age" HorizontalAlignment="Left" Margin="10,316,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy13" Content="Pert. moy." HorizontalAlignment="Left" Margin="10,339,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy14" Content="Ann. P. Moy." HorizontalAlignment="Left" Margin="10,361,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy15" Content="Cde terrain" HorizontalAlignment="Left" Margin="10,383,0,0" Grid.Row="2" VerticalAlignment="Top" FontWeight="Bold"/>
+        <Label x:Name="label_Copy16" Content="Note prest." HorizontalAlignment="Left" Margin="10,405,0,0" Grid.Row="2" VerticalAlignment="Top"/>
     </Grid>
 </UserControl>
